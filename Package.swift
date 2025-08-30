@@ -12,39 +12,42 @@ let package = Package(
         )
     ],
     targets: [
-        .plugin(
-            name: "NetworkLayerSwiftLintBuildToolPlugin",
-            capability: .buildTool(),
-            path: "Plugins/NetworkLayerSwiftLintBuildToolPlugin"
-        ),
-        .target(name: "NLCore", plugins: [
-            .plugin(
-                name: "NetworkLayerSwiftLintBuildToolPlugin"
-            )
-        ]),
+        // --- Plugin de SwiftLint (for de only) ---
+        /*
+         .plugin(
+         name: "NetworkLayerSwiftLintBuildToolPlugin",
+         capability: .buildTool(),
+         path: "Plugins/NetworkLayerSwiftLintBuildToolPlugin"
+         ),
+         */
+
         .target(
-            name: "NetworkLayer", dependencies: ["NLCore"], plugins: [
-                .plugin(
-                    name: "NetworkLayerSwiftLintBuildToolPlugin"
-                )
-            ]
+            name: "NLCore"
+            // , plugins: [
+            //     .plugin(name: "NetworkLayerSwiftLintBuildToolPlugin")
+            // ]
+        ),
+        .target(
+            name: "NetworkLayer",
+            dependencies: ["NLCore"]
+            // , plugins: [
+            //     .plugin(name: "NetworkLayerSwiftLintBuildToolPlugin")
+            // ]
         ),
         .testTarget(
             name: "NetworkLayerTests",
-            dependencies: ["NetworkLayer"], plugins: [
-                .plugin(
-                    name: "NetworkLayerSwiftLintBuildToolPlugin"
-                )
-            ]
+            dependencies: ["NetworkLayer"]
+            // , plugins: [
+            //     .plugin(name: "NetworkLayerSwiftLintBuildToolPlugin")
+            // ]
         ),
-
         .testTarget(
             name: "NLCoreTests",
-            dependencies: ["NLCore"], plugins: [
-                .plugin(
-                    name: "NetworkLayerSwiftLintBuildToolPlugin"
-                )
-            ]
+            dependencies: ["NLCore"]
+            // , plugins: [
+            //     .plugin(name: "NetworkLayerSwiftLintBuildToolPlugin")
+            // ]
         )
     ]
 )
+
